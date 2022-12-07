@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>Testi.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">kivipaperisakset (7 Dec 2022 11.02.40)</a> &gt; <a href="../../index.html" class="el_group">KiviPaperiSakset</a> &gt; <a href="../index.html" class="el_bundle">src</a> &gt; <a href="index.source.html" class="el_package">kivipaperisakset</a> &gt; <span class="el_source">Testi.java</span></div><h1>Testi.java</h1><pre class="source lang-java linenums">package kivipaperisakset;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+
+<span class="fc" id="L10">class Testi {</span>
+	
+	/**
+	 * Testaa luokan Pelaaja valinta()-metodin toimivuuden
+	 */
+	@Test
+	void testValinta() {
+<span class="fc" id="L17">		Pelaaja pelaaja = new Pelaaja();</span>
+<span class="fc" id="L18">		pelaaja.pelaajanValinta();</span>
+<span class="fc" id="L19">		String odotetutArvot[] = { &quot;kivi&quot;, &quot;sakset&quot;, &quot;paperi&quot; };</span>
+<span class="fc" id="L20">		List&lt;String&gt; odotetutArvotList = Arrays.asList(odotetutArvot);</span>
+
+<span class="fc" id="L22">		assertTrue(odotetutArvotList.contains(pelaaja.valinta));</span>
+<span class="fc" id="L23">	}</span>
+	
+	
+	/**
+	 * Testaa luokan Pelaaja voittojen lisäämisen toimivuuden
+	 */
+	@Test
+	void testVoitot() {
+<span class="fc" id="L31">		Pelaaja pelaaja = new Pelaaja();</span>
+<span class="fc" id="L32">		assertEquals(0, pelaaja.voitot);</span>
+<span class="fc" id="L33">		pelaaja.setVoitot();</span>
+<span class="fc" id="L34">		pelaaja.setVoitot();</span>
+<span class="fc" id="L35">		assertEquals(2, pelaaja.voitot);</span>
+<span class="fc" id="L36">	}</span>
+
+	/**
+	 * Testaa luokan Peli pelaa()-metodin toimivuuden
+	 */
+	@Test
+	void testPelaaPaperi() {
+<span class="fc" id="L43">		String valinta1 = &quot;paperi&quot;;</span>
+<span class="fc" id="L44">		String valinta2 = &quot;sakset&quot;;</span>
+
+<span class="fc" id="L46">		String lopputulos = Peli.pelaa(valinta1, valinta2);</span>
+<span class="fc" id="L47">		assertEquals(valinta2, lopputulos);</span>
+		
+<span class="fc" id="L49">		valinta2 = &quot;kivi&quot;;</span>
+<span class="fc" id="L50">		lopputulos = Peli.pelaa(valinta1, valinta2);</span>
+<span class="fc" id="L51">		assertEquals(valinta1, lopputulos);</span>
+<span class="fc" id="L52">	}</span>
+	
+	/**
+	 * Testaa luokan Peli pelaa()-metodin toimivuuden
+	 */
+	@Test
+	void testPelaaKivi() {
+<span class="fc" id="L59">		String valinta1 = &quot;kivi&quot;;</span>
+<span class="fc" id="L60">		String valinta2 = &quot;sakset&quot;;</span>
+
+<span class="fc" id="L62">		String lopputulos = Peli.pelaa(valinta1, valinta2);</span>
+<span class="fc" id="L63">		assertEquals(valinta1, lopputulos);</span>
+		
+<span class="fc" id="L65">		valinta2 = &quot;paperi&quot;;</span>
+<span class="fc" id="L66">		lopputulos = Peli.pelaa(valinta1, valinta2);</span>
+<span class="fc" id="L67">		assertEquals(valinta2, lopputulos);</span>
+<span class="fc" id="L68">	}</span>
+	
+	/**
+	 * Testaa luokan Peli pelaa()-metodin toimivuuden
+	 */
+	@Test
+	void testPelaaSakset() {
+<span class="fc" id="L75">		String valinta1 = &quot;sakset&quot;;</span>
+<span class="fc" id="L76">		String valinta2 = &quot;paperi&quot;;</span>
+
+<span class="fc" id="L78">		String lopputulos = Peli.pelaa(valinta1, valinta2);</span>
+<span class="fc" id="L79">		assertEquals(valinta1, lopputulos);</span>
+		
+<span class="fc" id="L81">		valinta2 = &quot;kivi&quot;;</span>
+<span class="fc" id="L82">		lopputulos = Peli.pelaa(valinta1, valinta2);</span>
+<span class="fc" id="L83">		assertEquals(valinta2, lopputulos);</span>
+<span class="fc" id="L84">	}</span>
+	
+	/**
+	 * Testaa luokan Peli pelaa()-metodin toimivuuden
+	 */
+	@Test
+	void testPelaaTasapeli() {
+<span class="fc" id="L91">		String valinta1 = &quot;kivi&quot;;</span>
+<span class="fc" id="L92">		String valinta2 = &quot;kivi&quot;;</span>
+
+<span class="fc" id="L94">		String lopputulos = Peli.pelaa(valinta1, valinta2);</span>
+<span class="fc" id="L95">		assertEquals(&quot;&quot;, lopputulos);</span>
+<span class="fc" id="L96">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span>kivipaperisakset (7 Dec 2022 11.02.40)</div></body></html>
